@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ruang · book a session</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.r-page{--ink:#1E1414;--maroon:#8C1A2D;--orange:#F57523;--blue:#BCD5EB;--olive:#C7B740;--peach:#F8D4C3;--cream:#FFF2D0;--paper:#FBF8F3;font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;color:var(--ink);background:var(--paper);min-height:100vh;font-size:18px;line-height:1.6;-webkit-tap-highlight-color:transparent}
+.r-page *{box-sizing:border-box}
+.r-page button{font:inherit;color:inherit;cursor:pointer}
+.r-wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.r-narrow{max-width:860px;margin:0 auto;padding:0 32px}
+.r-bar{position:sticky;top:0;z-index:20;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.r-top{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1200px;margin:0 auto;padding:16px 32px}
+.r-home{display:block;line-height:0;transition:transform .3s ease}
+.r-home:hover,.r-home:active{transform:rotate(-2deg) scale(1.04)}
+.r-home img{height:44px;width:auto}
+.r-nav{display:flex;gap:8px}
+.r-tab{display:flex;align-items:center;justify-content:center;min-width:104px;height:52px;padding:0 14px;text-decoration:none;font-size:15px;line-height:1}
+.r-tab span{transition:font-size .22s ease}
+.r-tab:hover span,.r-tab:focus-visible span{font-size:19px}
+.r-page .r-menu-btn{display:none;align-items:center;gap:10px;min-height:48px;padding:0 16px 0 12px;border:0;background:var(--ink);color:var(--paper);font-size:15px;font-weight:500}
+.r-dots{display:grid;grid-template-columns:repeat(2,9px);gap:3px}
+.r-dots i{display:block;width:9px;height:9px}
+.r-overlay{position:fixed;inset:0;z-index:50;background:var(--paper);display:flex;flex-direction:column;padding:16px 20px 28px;overflow-y:auto;animation:r-in .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes r-in{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+.r-ov-top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.r-ov-top img{height:36px;width:auto}
+.r-page .r-close{min-height:48px;border:0;background:var(--ink);color:var(--paper);font-size:15px;font-weight:500;padding:0 18px}
+.r-ov-grid{flex:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(110px,1fr);gap:10px;margin-top:24px}
+.r-ov-grid a{display:flex;align-items:flex-end;padding:18px;text-decoration:none;font-size:26px;line-height:1;font-weight:500;transition:transform .2s ease}
+.r-ov-grid a:active{transform:scale(.96)}
+.r-ov-wide{grid-column:1 / -1}
+.r-ov-home{display:inline-block;margin-top:18px;font-size:16px;color:var(--ink)}
+@media (min-width:821px){.r-overlay{display:none!important}}
+.r-page a:focus-visible,.r-page button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.r-kicker{display:inline-flex;align-items:center;gap:10px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.r-kicker::before{content:"";width:14px;height:14px;background:var(--accent)}
+.r-h1{font-size:clamp(40px,5.6vw,76px);line-height:1;font-weight:500;letter-spacing:-.025em;margin:20px 0 24px}
+.r-h2{font-size:clamp(26px,2.6vw,34px);line-height:1.1;font-weight:500;letter-spacing:-.015em;margin:0 0 10px}
+.r-lead{font-size:clamp(19px,1.6vw,22px);line-height:1.55;max-width:36em;margin:0 0 18px}
+.r-p{margin:0 0 12px;max-width:40em}
+.r-hero{padding:48px 0 40px}
+.r-who-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:32px 0 8px}
+.r-page .r-who{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;padding:14px;border:0;text-align:left;background:#fff;box-shadow:inset 0 0 0 1.5px rgba(30,20,20,.14);transition:transform .3s cubic-bezier(.2,.8,.2,1),background-color .3s ease,color .3s ease,box-shadow .3s ease}
+.r-page .r-who:hover{transform:translateY(-4px) rotate(-.5deg)}
+.r-page .r-who.is-on{background:var(--c);color:var(--on);box-shadow:8px 8px 0 var(--ink)}
+.r-who img{display:block;width:96px;height:112px;object-fit:cover}
+.r-who b{display:block;font-size:clamp(24px,2.4vw,32px);line-height:1;font-weight:500;letter-spacing:-.01em}
+.r-who small{display:block;margin-top:8px;font-size:14px;line-height:1.35}
+.r-who-hint{font-size:15px;color:rgba(30,20,20,.7);margin:0}
+.r-progress{display:flex;align-items:center;gap:14px;margin:40px 0 20px;font-weight:500;color:var(--maroon)}
+.r-track{flex:1;height:12px;background:#fff;box-shadow:inset 0 0 0 2px var(--maroon);overflow:hidden}
+.r-fill{display:block;height:100%;background:var(--maroon);transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.r-steps{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.r-step{position:relative;display:grid;grid-template-columns:72px 1fr;gap:20px;padding:28px;transition:transform .3s ease,opacity .3s ease}
+.r-step:hover{transform:translateY(-3px) rotate(-.3deg)}
+.r-step.is-locked{opacity:.5}
+.r-step.is-locked:hover{transform:none}
+.r-num{font-size:64px;line-height:.9;font-weight:500;letter-spacing:-.03em}
+.r-done{position:absolute;top:18px;right:18px;padding:5px 12px;background:var(--ink);color:var(--paper);font-size:13px;font-weight:500;animation:r-in .35s ease}
+.r-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:16px}
+.r-btn{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 24px;background:var(--ink);color:var(--paper);text-decoration:none;font-size:16px;font-weight:500;transition:transform .25s ease,box-shadow .25s ease}
+.r-btn::after{content:"→";transition:transform .25s ease}
+.r-btn:hover,.r-btn:active{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--paper)}
+.r-btn:hover::after{transform:translateX(4px)}
+.r-btn-off{display:inline-flex;align-items:center;min-height:50px;padding:0 24px;background:rgba(30,20,20,.35);color:var(--paper);font-size:16px;font-weight:500}
+.r-page .r-tick{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 16px;border:0;background:var(--paper);color:var(--maroon);font-size:15px;font-weight:500;transition:transform .2s ease}
+.r-page .r-tick:hover{transform:translateY(-2px)}
+.r-box{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;box-shadow:inset 0 0 0 2px var(--maroon);font-size:15px;line-height:1}
+.r-page .r-tick.is-on .r-box{background:var(--maroon);color:var(--paper)}
+.r-lockmsg{margin:12px 0 0;font-weight:500;font-size:15px}
+.r-help{margin:18px 0 0;font-size:15px;color:var(--maroon)}
+.r-help a{color:var(--maroon)}
+.r-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px;margin-top:48px}
+.r-note{padding:26px;background:var(--peach);color:var(--ink)}
+.r-note h3{margin:0 0 8px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;color:var(--maroon)}
+.r-note p,.r-note ul{margin:0;font-size:16px;line-height:1.55}
+.r-note ul{padding-left:18px;display:grid;gap:4px}
+.r-crisis{margin-top:14px;padding:26px;background:var(--maroon);color:var(--cream)}
+.r-crisis h3{margin:0 0 8px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;color:var(--peach)}
+.r-crisis p{margin:0;font-size:16px;line-height:1.55}
+.r-crisis a{color:#FFFFFF;font-weight:500}
+.r-foot{padding:72px 0 40px}
+.r-foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:flex-end}
+.r-foot img{height:52px;width:auto}
+.r-foot p{margin:14px 0 0;line-height:1.5}
+.r-social{display:flex;flex-wrap:wrap;gap:6px 24px}
+.r-social a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color .2s}
+.r-social a:hover{border-color:var(--maroon)}
+.r-copy{margin-top:32px;font-size:14px;color:rgba(30,20,20,.7)}
+@media (max-width:820px){.r-nav{display:none}.r-page .r-menu-btn{display:inline-flex}.r-home img{height:34px}.r-top{padding:12px 20px}}
+@media (max-width:640px){.r-page{font-size:17px}.r-wrap,.r-narrow{padding-left:20px;padding-right:20px}.r-hero{padding:24px 0 24px}.r-who-grid{grid-template-columns:1fr}.r-page .r-who{grid-template-columns:72px 1fr}.r-who img{width:72px;height:84px}.r-step{grid-template-columns:1fr;gap:8px;padding:22px}.r-num{font-size:48px}}
+@media (prefers-reduced-motion:reduce){.r-page *,.r-page *::before,.r-page *::after{transition:none!important;animation:none!important}}
+/* phones only: nothing below affects screens wider than 640px */
+@media (max-width:640px){
+.r-page{font-size:16px}
+.r-h1{font-size:34px!important;margin:14px 0 18px}
+.r-h2{font-size:26px!important;margin:10px 0 16px}
+.r-h3{font-size:20px}
+.r-lead{font-size:17px!important}
+.r-p{font-size:16px}
+.r-kicker{font-size:12px}
+.r-btn{font-size:15px;min-height:46px;padding:0 18px}
+.r-btns{margin-top:24px}
+.r-touch{padding:60px 0}
+.r-touch-grid{margin-top:28px}
+.r-ask{min-height:0;padding:22px;gap:18px}
+.r-ask strong,.r-ask:hover strong{font-size:20px}
+.r-ov-grid a{font-size:22px}
+.r-foot{padding:56px 0 32px}
+.r-foot img{height:44px}
+.r-copy{margin-top:28px}
+.r-h2{font-size:22px!important}
+.r-num{font-size:44px}
+.r-who b{font-size:20px}
+}
+</style>
+</helmet>
+<div class="r-page" style="--accent: #C7B740">
+<div class="r-bar">
+<header class="r-top">
+<a class="r-home" href="index.html" aria-label="ruang home"><img src="assets/3613d6a8464082f3c5b678c36bb1cc7b.png" alt="ruang"></a>
+<nav class="r-nav" aria-label="Main">
+<a class="r-tab" href="about.html" style="background-color: #F57523; color: #1E1414"><span>about us</span></a>
+<a class="r-tab" href="who-are-we.html" style="background-color: #F8D4C3; color: #8C1A2D"><span>who are we</span></a>
+<a class="r-tab" href="services.html" style="background-color: #BCD5EB; color: #8C1A2D"><span>services</span></a>
+<a class="r-tab" href="group-therapy.html" style="background-color: #C7B740; color: #8C1A2D"><span>group therapy</span></a>
+<a class="r-tab" href="events.html" style="background-color: #8C1A2D; color: #FFF2D0"><span>events</span></a>
+</nav>
+<button class="r-menu-btn" type="button" onClick="{{ openMenu }}" aria-label="Open menu"><span class="r-dots" aria-hidden="true"><i style="background-color: #F57523"></i><i style="background-color: #BCD5EB"></i><i style="background-color: #C7B740"></i><i style="background-color: #F8D4C3"></i></span>menu</button>
+</header>
+</div>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+<div class="r-overlay" role="dialog" aria-label="Menu">
+<div class="r-ov-top"><img src="assets/3613d6a8464082f3c5b678c36bb1cc7b.png" alt="ruang"><button class="r-close" type="button" onClick="{{ closeMenu }}">close</button></div>
+<nav class="r-ov-grid" aria-label="Main">
+<a href="about.html" style="background-color: #F57523; color: #1E1414">about us</a>
+<a href="who-are-we.html" style="background-color: #F8D4C3; color: #8C1A2D">who are we</a>
+<a href="services.html" style="background-color: #BCD5EB; color: #8C1A2D">services</a>
+<a href="events.html" style="background-color: #8C1A2D; color: #FFF2D0">events</a>
+<a class="r-ov-wide" href="group-therapy.html" style="background-color: #C7B740; color: #8C1A2D">group therapy</a>
+</nav>
+<a class="r-ov-home" href="index.html">Back to the start</a>
+</div>
+</sc-if>
+
+<main class="r-narrow">
+<section class="r-hero">
+<span class="r-kicker">Book a session</span>
+<h1 class="r-h1">Three steps to your first session.</h1>
+<p class="r-lead">Pick a time with your psychologist, make your payment, then fill in your registration and consent. It takes about 10 minutes, and we need all three before your session can go ahead.</p>
+
+<p class="r-who-hint" style="margin-top: 28px; font-weight: 500; color: #1E1414">Who would you like to see?</p>
+<div class="r-who-grid" role="group" aria-label="Choose your psychologist">
+<button class="r-who {{ ishetaCls }}" type="button" onClick="{{ pickIsheta }}" aria-pressed="{{ isIsheta }}" style="--c: #8C1A2D; --on: #FFF2D0"><img src="assets/a38557ff359649511618c731d164f7c7.jpg" alt=""><span><b>Isheta</b><small>Isheta Shah<br>Clinical Psychologist · MAHPC(CP)00915</small></span></button>
+<button class="r-who {{ puteriCls }}" type="button" onClick="{{ pickPuteri }}" aria-pressed="{{ isPuteri }}" style="--c: #F8D4C3; --on: #8C1A2D"><img src="assets/f8c3f6c5257f6e1af5c20d3f3c984bf6.jpg" alt=""><span><b>Puteri</b><small>Puteri Adriana<br>Clinical Psychologist · MAHPC(CP)00916</small></span></button>
+</div>
+<p class="r-who-hint">Not sure yet? <a href="who-are-we.html" style="color: #8C1A2D">Meet them first</a>, or pick either and you can choose on the booking page.</p>
+</section>
+
+<div class="r-progress" aria-live="polite"><span class="r-track"><span class="r-fill" style="width: {{ fillPct }}"></span></span><span>{{ countText }}</span></div>
+
+<ol class="r-steps">
+<li class="r-step" style="background-color: #C7B740">
+<sc-if value="{{ done1 }}" hint-placeholder-val="{{ false }}"><span class="r-done">Done</span></sc-if>
+<span class="r-num" style="color: #8C1A2D" aria-hidden="true">1</span>
+<div>
+<h2 class="r-h2" style="color: #8C1A2D">Book your slot</h2>
+<p class="r-p">{{ step1Text }} Cal.com opens in a new tab. Once you see “This meeting is scheduled”, come back here and tick the box below.</p>
+<div class="r-actions">
+<a class="r-btn" href="https://cal.com/ruang-org" target="_blank" rel="noopener" onClick="{{ open1 }}">{{ bookLabel }}</a>
+<sc-if value="{{ show1 }}" hint-placeholder-val="{{ false }}">
+<button class="r-tick {{ tick1Cls }}" type="button" onClick="{{ toggle1 }}" aria-pressed="{{ done1 }}"><span class="r-box" aria-hidden="true">{{ box1 }}</span>I’ve booked my slot</button>
+</sc-if>
+</div>
+</div>
+</li>
+
+<li class="r-step {{ lock2Cls }}" style="background-color: #F57523">
+<sc-if value="{{ done2 }}" hint-placeholder-val="{{ false }}"><span class="r-done">Done</span></sc-if>
+<span class="r-num" style="color: #FFF2D0" aria-hidden="true">2</span>
+<div>
+<h2 class="r-h2" style="color: #1E1414">Payment</h2>
+<p class="r-p">Make your session payment and submit your details on the payment form. Payment is needed before your session takes place.</p>
+<sc-if value="{{ locked2 }}" hint-placeholder-val="{{ true }}">
+<p class="r-lockmsg">Unlocks after you book your slot.</p>
+<div class="r-actions"><span class="r-btn-off" aria-disabled="true">Open payment form</span></div>
+</sc-if>
+<sc-if value="{{ open2Ok }}" hint-placeholder-val="{{ false }}">
+<div class="r-actions">
+<a class="r-btn" href="https://forms.gle/orMQEGMEbKG6WrWy5" target="_blank" rel="noopener" onClick="{{ open2 }}">Open payment form</a>
+<sc-if value="{{ show2 }}" hint-placeholder-val="{{ false }}">
+<button class="r-tick {{ tick2Cls }}" type="button" onClick="{{ toggle2 }}" aria-pressed="{{ done2 }}"><span class="r-box" aria-hidden="true">{{ box2 }}</span>I’ve submitted my payment</button>
+</sc-if>
+</div>
+</sc-if>
+</div>
+</li>
+
+<li class="r-step {{ lock3Cls }}" style="background-color: #BCD5EB">
+<sc-if value="{{ done3 }}" hint-placeholder-val="{{ false }}"><span class="r-done">Done</span></sc-if>
+<span class="r-num" style="color: #8C1A2D" aria-hidden="true">3</span>
+<div>
+<h2 class="r-h2" style="color: #8C1A2D">Registration and consent</h2>
+<p class="r-p">Your details, plus our informed consent: how we keep things confidential, our fees and cancellations, and how your data is protected. You’ll tick “I agree” and add your NRIC or passport number. Clients under 18 need a parent or guardian to sign.</p>
+<sc-if value="{{ locked3 }}" hint-placeholder-val="{{ true }}">
+<p class="r-lockmsg">Unlocks after you submit your payment.</p>
+<div class="r-actions"><span class="r-btn-off" aria-disabled="true">Open registration form</span></div>
+</sc-if>
+<sc-if value="{{ open3Ok }}" hint-placeholder-val="{{ false }}">
+<div class="r-actions">
+<a class="r-btn" href="https://forms.gle/kEAHZWQCYZemmDxW8" target="_blank" rel="noopener" onClick="{{ open3 }}">Open registration form</a>
+<sc-if value="{{ show3 }}" hint-placeholder-val="{{ false }}">
+<button class="r-tick {{ tick3Cls }}" type="button" onClick="{{ toggle3 }}" aria-pressed="{{ done3 }}"><span class="r-box" aria-hidden="true">{{ box3 }}</span>I’ve submitted this</button>
+</sc-if>
+</div>
+</sc-if>
+</div>
+</li>
+</ol>
+<p class="r-help">Stuck on a step? Message us on Instagram at <a href="https://www.instagram.com/ruang_org/" target="_blank" rel="noopener">@ruang_org</a> and we’ll help.</p>
+
+<div class="r-notes">
+<div class="r-note">
+<h3>What happens next</h3>
+<p>Your calendar invite and session link are in your booking confirmation email. Your psychologist will reach out if anything else is needed.</p>
+</div>
+<div class="r-note">
+<h3>Changing your appointment</h3>
+<ul>
+<li>Please reschedule or cancel at least 3 working days ahead.</li>
+<li>Changes with less than 24 hours’ notice are charged the full session fee.</li>
+<li>If you haven’t joined or contacted us within 15 minutes of the start time, it counts as a no-show.</li>
+</ul>
+</div>
+</div>
+<div class="r-crisis">
+<h3>Need help right now?</h3>
+<p>ruang is not a 24-hour crisis service. If you are in immediate danger, call <a href="tel:999">999</a> or go to the nearest hospital emergency department. You can also reach Talian Kasih on <a href="tel:15999">15999</a> or Befrienders on <a href="tel:+60376272929">03-7627 2929</a>.</p>
+</div>
+</main>
+
+<footer class="r-foot">
+<div class="r-wrap">
+<div class="r-foot-grid">
+<div>
+<img src="assets/3613d6a8464082f3c5b678c36bb1cc7b.png" alt="ruang">
+<p>A space to talk. A space to be.<br>Mental health should be a conversation, not a whisper.</p>
+</div>
+<nav class="r-social" aria-label="Social">
+<a href="https://www.instagram.com/ruang_org/" target="_blank" rel="noopener">Instagram @ruang_org</a>
+<a href="mailto:ruangteam@gmail.com">ruangteam@gmail.com</a>
+</nav>
+</div>
+<p class="r-copy">Ruang Psychological Solutions 202603202713 (SA0656478-T) · © Ruang 2026</p>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2600}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { menu: false, who: '', o1: false, o2: false, o3: false, d1: false, d2: false, d3: false };
+}
+renderVals() {
+const s = this.state || {};
+const d1 = !!s.d1, d2 = d1 && !!s.d2, d3 = d2 && !!s.d3;
+const n = (d1 ? 1 : 0) + (d2 ? 1 : 0) + (d3 ? 1 : 0);
+const who = s.who;
+const name = who === 'isheta' ? 'Isheta' : (who === 'puteri' ? 'Puteri' : '');
+return {
+menuOpen: !!s.menu,
+openMenu: () => this.setState({ menu: true }),
+closeMenu: () => this.setState({ menu: false }),
+isIsheta: who === 'isheta', isPuteri: who === 'puteri',
+ishetaCls: who === 'isheta' ? 'is-on' : '', puteriCls: who === 'puteri' ? 'is-on' : '',
+pickIsheta: () => this.setState({ who: 'isheta' }),
+pickPuteri: () => this.setState({ who: 'puteri' }),
+step1Text: name ? 'Choose ' + name + ' and your session type, then pick a time that suits you.' : 'Choose your psychologist and session type, then pick a time that suits you.',
+bookLabel: name ? 'Book with ' + name + ' on Cal.com' : 'Book on Cal.com',
+fillPct: Math.round(n / 3 * 100) + '%',
+countText: n === 3 ? 'All done. See you soon!' : n + ' of 3 done',
+open1: () => this.setState({ o1: true }),
+open2: () => this.setState({ o2: true }),
+open3: () => this.setState({ o3: true }),
+show1: !!s.o1 || d1, show2: !!s.o2 || d2, show3: !!s.o3 || d3,
+done1: d1, done2: d2, done3: d3,
+box1: d1 ? '✓' : '', box2: d2 ? '✓' : '', box3: d3 ? '✓' : '',
+tick1Cls: d1 ? 'is-on' : '', tick2Cls: d2 ? 'is-on' : '', tick3Cls: d3 ? 'is-on' : '',
+toggle1: () => this.setState(d1 ? { d1: false, d2: false, d3: false } : { d1: true }),
+toggle2: () => this.setState(d2 ? { d2: false, d3: false } : { d2: true }),
+toggle3: () => this.setState({ d3: !d3 }),
+locked2: !d1, open2Ok: d1, lock2Cls: d1 ? '' : 'is-locked',
+locked3: !d2, open3Ok: d2, lock3Cls: d2 ? '' : 'is-locked'
+};
+}
+}
+</script>
+</body>
+</html>

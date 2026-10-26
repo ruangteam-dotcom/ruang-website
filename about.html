@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ruang · about us</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.r-page{--ink:#1E1414;--maroon:#8C1A2D;--orange:#F57523;--blue:#BCD5EB;--olive:#C7B740;--peach:#F8D4C3;--cream:#FFF2D0;--paper:#FBF8F3;font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;color:var(--ink);background:var(--paper);min-height:100vh;font-size:18px;line-height:1.6;-webkit-tap-highlight-color:transparent}
+.r-page *{box-sizing:border-box}
+.r-page button{font:inherit;color:inherit;cursor:pointer}
+.r-wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.r-bar{position:sticky;top:0;z-index:20;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.r-top{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1200px;margin:0 auto;padding:16px 32px}
+.r-home{display:block;line-height:0;transition:transform .3s ease}
+.r-home:hover,.r-home:active{transform:rotate(-2deg) scale(1.04)}
+.r-home img{height:44px;width:auto}
+.r-nav{display:flex;gap:8px}
+.r-tab{display:flex;align-items:center;justify-content:center;min-width:104px;height:52px;padding:0 14px;text-decoration:none;font-size:15px;line-height:1}
+.r-tab span{transition:font-size .22s ease}
+.r-tab:hover span,.r-tab:focus-visible span{font-size:19px}
+.r-tab[aria-current="page"]{box-shadow:inset 0 -5px 0 rgba(30,20,20,.5)}
+.r-page .r-menu-btn{display:none;align-items:center;gap:10px;min-height:48px;padding:0 16px 0 12px;border:0;background:var(--ink);color:var(--paper);font-size:15px;font-weight:500}
+.r-dots{display:grid;grid-template-columns:repeat(2,9px);gap:3px}
+.r-dots i{display:block;width:9px;height:9px}
+.r-overlay{position:fixed;inset:0;z-index:50;background:var(--paper);display:flex;flex-direction:column;padding:16px 20px 28px;overflow-y:auto;animation:r-in .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes r-in{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+.r-ov-top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.r-ov-top img{height:36px;width:auto}
+.r-page .r-close{min-height:48px;border:0;background:var(--ink);color:var(--paper);font-size:15px;font-weight:500;padding:0 18px}
+.r-ov-grid{flex:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(110px,1fr);gap:10px;margin-top:24px}
+.r-ov-grid a{display:flex;align-items:flex-end;padding:18px;text-decoration:none;font-size:26px;line-height:1;font-weight:500;transition:transform .2s ease}
+.r-ov-grid a:active{transform:scale(.96)}
+.r-ov-wide{grid-column:1 / -1}
+.r-ov-home{display:inline-block;margin-top:18px;font-size:16px;color:var(--ink)}
+@media (min-width:821px){.r-overlay{display:none!important}}
+.r-page a:focus-visible,.r-page button:focus-visible,.r-page summary:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.r-kicker{display:inline-flex;align-items:center;gap:10px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.r-kicker::before{content:"";width:14px;height:14px;background:var(--accent)}
+.r-h1{font-size:clamp(40px,6vw,84px);line-height:.98;font-weight:500;letter-spacing:-.025em;margin:20px 0 28px}
+.r-h2{font-size:clamp(30px,4vw,56px);line-height:1.04;font-weight:500;letter-spacing:-.02em;margin:16px 0 24px}
+.r-h3{font-size:24px;line-height:1.15;font-weight:500;margin:0 0 10px}
+.r-lead{font-size:clamp(19px,1.6vw,22px);line-height:1.55;max-width:34em;margin:0 0 18px}
+.r-p{margin:0 0 16px;max-width:38em}
+.r-sec{padding:104px 0;border-top:1px solid rgba(30,20,20,.12)}
+.r-split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:56px;align-items:start}
+.r-hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:56px;align-items:center;padding:40px 0 112px}
+.r-photo{display:flex;align-items:flex-end;padding:16px;background:repeating-linear-gradient(135deg,rgba(30,20,20,.05) 0 10px,transparent 10px 20px),#EFE8DE;border:1.5px dashed rgba(30,20,20,.35);font-size:13px;line-height:1.35;color:rgba(30,20,20,.78);text-align:left;transition:transform .4s ease,box-shadow .4s ease}
+.r-photo b{display:block;font-weight:500;color:var(--ink);font-size:14px}
+.r-img{display:block;width:100%;height:auto;object-fit:cover;transition:transform .4s ease,box-shadow .4s ease}
+.r-img:hover{transform:rotate(-1.2deg) scale(1.015);box-shadow:10px 10px 0 var(--accent)}
+.r-photo:hover{transform:rotate(-1.2deg) scale(1.015);box-shadow:10px 10px 0 var(--accent)}
+.r-btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.r-btn{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 24px;background:var(--ink);color:var(--paper);text-decoration:none;font-size:16px;font-weight:500;transition:transform .25s ease,box-shadow .25s ease}
+.r-btn::after{content:"→";transition:transform .25s ease}
+.r-btn:hover,.r-btn:active{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--accent)}
+.r-btn:hover::after{transform:translateX(4px)}
+.r-btn--line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.r-btn--line:hover,.r-btn--line:active{box-shadow:inset 0 0 0 1.5px var(--ink),6px 6px 0 var(--accent)}
+.r-touch{background:var(--maroon);color:var(--cream);padding:112px 0 104px}
+.r-touch .r-kicker::before{background:var(--cream)}
+.r-touch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px;margin-top:44px}
+.r-ask{display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:240px;padding:28px;text-decoration:none;color:var(--ink);transition:transform .3s ease}
+.r-ask strong{display:block;font-size:24px;line-height:1.1;font-weight:500;transition:font-size .22s ease;margin-bottom:10px}
+.r-ask:hover,.r-ask:active{transform:translateY(-8px)}
+.r-ask:hover strong{font-size:29px}
+.r-go{font-weight:500;border-bottom:1.5px solid currentColor;align-self:flex-start}
+.r-foot{padding:80px 0 40px}
+.r-foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;align-items:flex-end}
+.r-foot img{height:56px;width:auto}
+.r-foot p{margin:16px 0 0;line-height:1.5}
+.r-social{display:flex;flex-wrap:wrap;gap:6px 24px}
+.r-social a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color .2s}
+.r-social a:hover{border-color:var(--maroon)}
+.r-copy{margin-top:40px;font-size:14px;color:rgba(30,20,20,.7)}
+.r-collage{position:relative;display:block;width:100%;max-width:520px;aspect-ratio:1 / 1;justify-self:center;border:0;padding:0;background:transparent}
+.r-sq{position:absolute;transition:transform .6s cubic-bezier(.2,.8,.2,1),background-color .5s ease,rotate .5s ease}
+.r-collage:hover .r-sq--a{transform:translate(-16px,-12px)}
+.r-collage:hover .r-sq--b{transform:translate(14px,-16px)}
+.r-collage:hover .r-sq--c{transform:translate(12px,14px)}
+.r-hint{position:absolute;right:0;bottom:-34px;font-size:14px;color:rgba(30,20,20,.7)}
+.r-space{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.r-space div{aspect-ratio:1 / 1;display:flex;align-items:flex-end;padding:20px;font-size:clamp(20px,2vw,28px);line-height:1.1;font-weight:500;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.r-space div:hover,.r-space div:active{transform:scale(1.05) rotate(-2deg)}
+.r-big{font-size:clamp(32px,5vw,72px);line-height:1.05;font-weight:500;letter-spacing:-.025em;margin:0;max-width:16em}
+.r-stack p{margin:0;padding:14px 0;border-top:1px solid rgba(30,20,20,.2);font-size:clamp(20px,1.9vw,26px);line-height:1.3;transition:transform .3s ease}
+.r-stack p:hover{transform:translateX(10px)}
+.r-acc{border-top:1px solid rgba(30,20,20,.16)}
+.r-acc:last-child{border-bottom:1px solid rgba(30,20,20,.16)}
+.r-acc summary{list-style:none;display:grid;grid-template-columns:1fr 44px;align-items:center;gap:16px;min-height:72px;padding:12px 0;font-size:clamp(20px,1.9vw,26px);line-height:1.25;font-weight:500;cursor:pointer}
+.r-acc summary::-webkit-details-marker{display:none}
+.r-plus{position:relative;width:44px;height:44px;background:var(--peach);transition:transform .35s ease,background-color .35s ease}
+.r-plus::before,.r-plus::after{content:"";position:absolute;left:50%;top:50%;width:16px;height:2px;background:var(--maroon);transform:translate(-50%,-50%)}
+.r-plus::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .35s ease}
+.r-acc summary:hover .r-plus{transform:rotate(-8deg)}
+.r-acc[open] .r-plus{background:var(--orange)}
+.r-acc[open] .r-plus::after{transform:translate(-50%,-50%) rotate(0deg)}
+.r-acc-body{padding:0 60px 24px 0;animation:r-in .35s ease}
+.r-acc-body p{margin:0 0 12px;max-width:40em}
+.r-parts{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 20px}
+.r-page .r-part{min-height:48px;padding:0 18px;border:0;background:#fff;box-shadow:inset 0 0 0 1.5px rgba(30,20,20,.2);font-size:16px;font-weight:500;transition:transform .2s ease,background-color .25s ease}
+.r-page .r-part:hover{transform:translateY(-3px)}
+.r-page .r-part.is-on{background:var(--ink);color:var(--paper);box-shadow:none}
+.r-part-panel{display:flex;align-items:flex-end;min-height:220px;padding:28px;font-size:clamp(22px,2.3vw,32px);line-height:1.25;font-weight:500;transition:background-color .45s ease,color .45s ease}
+.r-logo-show{display:flex;align-items:center;justify-content:center;padding:24px 0}
+.r-logo-show img{width:100%;max-width:440px;height:auto;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.r-logo-show:hover img{transform:scale(1.05) rotate(-1.5deg)}
+.r-moods{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 36px}
+.r-page .r-mood{min-height:52px;padding:0 20px;border:0;background:var(--cream);font-size:17px;font-weight:500;text-align:left;transition:transform .2s ease,background-color .25s ease,color .25s ease}
+.r-page .r-mood:hover{transform:translateY(-3px) rotate(-1deg)}
+.r-page .r-mood.is-on{background:var(--ink);color:var(--paper)}
+.r-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px}
+.r-card{position:relative;overflow:hidden;display:block;padding:32px 28px 36px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:inset 0 0 0 1px rgba(30,20,20,.1);isolation:isolate;transition:color .3s ease,transform .4s cubic-bezier(.2,.8,.2,1),opacity .4s ease}
+.r-card::before{content:"";position:absolute;inset:0;background:var(--c);transform:scaleY(0);transform-origin:bottom;transition:transform .45s cubic-bezier(.2,.8,.2,1);z-index:-1}
+.r-card:hover::before,.r-card.is-picked::before{transform:scaleY(1)}
+.r-card.is-picked{transform:translateY(-10px)}
+.r-card.is-dim{opacity:.45}
+.r-tag{display:block;width:44px;height:44px;background:var(--c);margin-bottom:28px;transition:transform .45s ease,background-color .45s ease}
+.r-card:hover .r-tag,.r-card.is-picked .r-tag{transform:rotate(45deg) scale(.6);background:var(--ink)}
+.r-card--dark:hover,.r-card--dark.is-picked{color:var(--cream)}
+.r-card--dark:hover .r-tag,.r-card--dark.is-picked .r-tag{background:var(--cream)}
+.r-more{display:inline-block;margin-top:18px;font-weight:500;border-bottom:1.5px solid currentColor}
+.r-founders{display:inline-flex;align-items:center;gap:16px;margin-top:28px;padding:10px 22px 10px 10px;background:#fff;box-shadow:inset 0 0 0 1px rgba(30,20,20,.12);color:var(--ink);text-decoration:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
+.r-founders img{width:84px;height:84px;object-fit:cover;object-position:50% 40%;rotate:-3deg;box-shadow:5px 5px 0 #FBB8E8;transition:rotate .35s ease}
+.r-founders span{display:flex;flex-direction:column;line-height:1.25}
+.r-founders small{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(30,20,20,.7)}
+.r-founders b{font-size:21px;font-weight:500}
+.r-founders em{font-style:normal;font-size:15px;font-weight:500;color:var(--maroon);margin-top:4px}
+.r-founders em::after{content:" →"}
+.r-founders:hover{transform:translateY(-4px);box-shadow:inset 0 0 0 1px rgba(30,20,20,.12),6px 6px 0 var(--orange)}
+.r-founders:hover img{rotate:3deg}
+.r-quote{background:var(--maroon);color:var(--cream);padding:96px 0}
+.r-quote-text{font-size:clamp(30px,4.4vw,64px);line-height:1.08;font-weight:500;letter-spacing:-.02em;margin:20px 0 0;max-width:17em}
+.r-quote-text span{color:var(--olive)}
+.r-space{grid-template-columns:repeat(4,minmax(0,1fr))!important;margin-top:36px}
+.r-mv{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px;align-items:start}
+.r-mv-card{display:flex;flex-direction:column;padding:44px 40px;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.r-mv-card:hover{transform:translateY(-6px)}
+.r-mv-big{font-size:clamp(28px,3vw,42px);line-height:1.08;font-weight:500;letter-spacing:-.02em;margin:20px 0 18px}
+.r-mv-rest{font-size:clamp(18px,1.5vw,21px);line-height:1.5;margin:0;max-width:30em}
+.r-mv .r-stack p{font-size:clamp(17px,1.4vw,19px)}
+.r-mv-img{margin-top:auto;padding-top:0;max-width:240px;aspect-ratio:4 / 3;align-self:flex-start;transform:translateY(0);box-shadow:8px 8px 0 #1E1414}
+.r-mv-rest{margin-bottom:28px!important}
+.r-space div{aspect-ratio:4 / 3!important}
+@keyframes r-rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@supports (animation-timeline: view()){.r-reveal{animation:r-rise linear both;animation-timeline:view();animation-range:entry 0% cover 22%}}
+@media (max-width:820px){.r-nav{display:none}.r-page .r-menu-btn{display:inline-flex}.r-home img{height:34px}.r-top{padding:12px 20px}}
+@media (max-width:640px){.r-page{font-size:17px}.r-wrap{padding-left:20px;padding-right:20px}.r-sec{padding:72px 0}.r-hero{padding:24px 0 88px;gap:40px}.r-touch{padding:80px 0}.r-acc-body{padding-right:0}.r-space{grid-template-columns:repeat(2,minmax(0,1fr))!important}.r-space div{aspect-ratio:auto;min-height:120px}.r-quote{padding:72px 0}.r-mv-card{padding:28px 22px}.r-founders img{width:68px;height:68px}.r-part-panel{min-height:170px;padding:22px}}
+@media (prefers-reduced-motion:reduce){.r-page *,.r-page *::before,.r-page *::after{transition:none!important;animation:none!important}}
+/* phones only: nothing below affects screens wider than 640px */
+@media (max-width:640px){
+.r-page{font-size:16px}
+.r-h1{font-size:34px!important;margin:14px 0 18px}
+.r-h2{font-size:26px!important;margin:10px 0 16px}
+.r-h3{font-size:20px}
+.r-lead{font-size:17px!important}
+.r-p{font-size:16px}
+.r-kicker{font-size:12px}
+.r-btn{font-size:15px;min-height:46px;padding:0 18px}
+.r-btns{margin-top:24px}
+.r-touch{padding:60px 0}
+.r-touch-grid{margin-top:28px}
+.r-ask{min-height:0;padding:22px;gap:18px}
+.r-ask strong,.r-ask:hover strong{font-size:20px}
+.r-ov-grid a{font-size:22px}
+.r-foot{padding:56px 0 32px}
+.r-foot img{height:44px}
+.r-copy{margin-top:28px}
+.r-big{font-size:28px!important}
+.r-acc summary{font-size:18px;min-height:60px}
+.r-acc-body p{font-size:16px}
+.r-quote{padding:56px 0}
+.r-quote-text{font-size:26px}
+.r-mv-big{font-size:24px}
+.r-mv-rest{font-size:16px}
+.r-stack p,.r-mv .r-stack p{font-size:16px}
+.r-part-panel{font-size:19px}
+.r-space div{font-size:18px}
+.r-page .r-mood{font-size:15px;min-height:46px}
+.r-page .r-part{font-size:15px}
+.r-founders b{font-size:18px}
+.r-card{padding:24px 22px 26px}
+}
+</style>
+</helmet>
+<div class="r-page" style="--accent: #F57523">
+<div class="r-bar">
+<header class="r-top">
+<a class="r-home" href="index.html" aria-label="ruang home"><img src="assets/3613d6a8464082f3c5b678c36bb1cc7b.png" alt="ruang"></a>
+<nav class="r-nav" aria-label="Main">
+<a class="r-tab" href="about.html" aria-current="page" style="background-color: #F57523; color: #1E1414"><span>about us</span></a>
+<a class="r-tab" href="who-are-we.html" style="background-color: #F8D4C3; color: #8C1A2D"><span>who are we</span></a>
+<a class="r-tab" href="services.html" style="background-color: #BCD5EB; color: #8C1A2D"><span>services</span></a>
+<a class="r-tab" href="group-therapy.html" style="background-color: #C7B740; color: #8C1A2D"><span>group therapy</span></a>
+<a class="r-tab" href="events.html" style="background-color: #8C1A2D; color: #FFF2D0"><span>events</span></a>
+</nav>
+<button class="r-menu-btn" type="button" onClick="{{ openMenu }}" aria-label="Open menu"><span class="r-dots" aria-hidden="true"><i style="background-color: #F57523"></i><i style="background-color: #BCD5EB"></i><i style="background-color: #C7B740"></i><i style="background-color: #F8D4C3"></i></span>menu</button>
+</header>
+</div>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+<div class="r-overlay" role="dialog" aria-label="Menu">
+<div class="r-ov-top"><img src="assets/3613d6a8464082f3c5b678c36bb1cc7b.png" alt="ruang"><button class="r-close" type="button" onClick="{{ closeMenu }}">close</button></div>
+<nav class="r-ov-grid" aria-label="Main">
+<a href="about.html" style="background-color: #F57523; color: #1E1414">about us</a>
+<a href="who-are-we.html" style="background-color: #F8D4C3; color: #8C1A2D">who are we</a>
+<a href="services.html" style="background-color: #BCD5EB; color: #8C1A2D">services</a>
+<a href="events.html" style="background-color: #8C1A2D; color: #FFF2D0">events</a>
+<a class="r-ov-wide" href="group-therapy.html" style="background-color: #C7B740; color: #8C1A2D">group therapy</a>
+</nav>
+<a class="r-ov-home" href="index.html">Back to the start</a>
+</div>
+</sc-if>
+
+<main>
+<section class="r-wrap">
+<div class="r-hero">
+<div>
+<span class="r-kicker">About us</span>
+<h1 class="r-h1">A space to talk. A space to be.</h1>
+<p class="r-lead">Founded in 2025 by Isheta Shah and Puteri Adriana, ruang was built on a simple belief: mental health should be a conversation, not a whisper.</p>
+<p class="r-p">Through therapy, community events and collaborations, we hope to make mental health more accessible, approachable, and part of everyday life.</p>
+<div class="r-btns">
+<a class="r-btn" href="#find-your-space">Find your space</a>
+</div>
+<a class="r-founders" href="who-are-we.html">
+<img src="assets/ff3fc9572202589d270e2160795def86.jpg" alt="Isheta Shah and Puteri Adriana, the founders of ruang">
+<span><small>Founded by</small><b>Isheta &amp; Puteri</b><em>Meet the team</em></span>
+</a>
+</div>
+<button class="r-collage" type="button" onClick="{{ shuffle }}" aria-label="Shuffle the colours">
+<span class="r-sq r-sq--a" style="left: 0; top: 8%; width: 38%; height: 44%; background-color: {{ sqA }}; rotate: {{ rotA }}"></span>
+<span class="r-sq r-sq--b" style="right: 0; top: 0; width: 30%; height: 34%; background-color: {{ sqB }}; rotate: {{ rotB }}"></span>
+<span class="r-sq r-sq--c" style="right: 6%; bottom: 0; width: 40%; height: 30%; background-color: {{ sqC }}; rotate: {{ rotC }}"></span>
+<img class="r-img" src="assets/c62df2908899e1bbd02e4536f174ae40.jpg" alt="Mental health should be a conversation, not a whisper" style="position: absolute; left: 22%; top: 14%; width: 56%; height: 72%">
+<span class="r-hint">tap to rearrange the room</span>
+</button>
+</div>
+</section>
+
+<section class="r-quote">
+<div class="r-wrap r-reveal">
+<span class="r-kicker" style="--accent: #C7B740">Why ruang?</span>
+<p class="r-quote-text">Sometimes, the hardest part isn’t asking for help. It’s knowing that you’re <span>allowed to.</span></p>
+</div>
+</section>
+
+<section class="r-sec" style="background-color: #FFF2D0; border-top: 0">
+<div class="r-wrap r-reveal">
+<span class="r-kicker">Why the name ruang?</span>
+<h2 class="r-h2" style="max-width: 15em">Ruang means space. And that’s exactly what we want to create.</h2>
+<div class="r-space">
+<div style="background-color: #F57523; color: #1E1414">A space to pause.</div>
+<div style="background-color: #BCD5EB; color: #8C1A2D">A space to talk.</div>
+<div style="background-color: #F8D4C3; color: #8C1A2D">A space to listen.</div>
+<div style="background-color: #8C1A2D; color: #FFF2D0">A space to feel understood.</div>
+</div>
+<div class="r-split" style="align-items: center; margin-top: 72px">
+<div>
+<h3 class="r-h3">What our logo means</h3>
+<p class="r-p">Our logo reflects the kind of space we want ruang to be. Pick a part to see what it means.</p>
+<div class="r-parts">
+<sc-for list="{{ parts }}" as="part" hint-placeholder-count="4">
+<button class="r-part {{ part.cls }}" type="button" onClick="{{ part.pick }}" aria-pressed="{{ part.on }}">{{ part.label }}</button>
+</sc-for>
+</div>
+<div class="r-part-panel" style="background-color: {{ partBg }}; color: {{ partFg }}">{{ partText }}</div>
+</div>
+<div>
+<div class="r-logo-show"><img src="assets/3613d6a8464082f3c5b678c36bb1cc7b.png" alt="The ruang logo: a lamp, an armchair and the handwritten word ruang"></div>
+<p class="r-lead" style="margin-top: 28px">Because mental health care doesn’t always have to feel clinical.</p>
+<p class="r-p">Sometimes, it can simply feel like coming into a room where you know you can be yourself.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="r-sec" style="border-top: 0">
+<div class="r-wrap r-mv r-reveal">
+<div class="r-mv-card" style="background-color: #f8d4c3; color: #1E1414">
+<span class="r-kicker" style="--accent: #1E1414">Our mission</span>
+<p class="r-mv-big">To empower Malaysians to embrace mental health conversations</p>
+<p class="r-mv-rest">by providing accessible care, collaborating with NGOs and creating opportunities to talk openly about the topics we often find difficult to discuss.</p>
+<img class="r-img r-mv-img" src="assets/ae4970bd6f4af60315c5a7abc7b7a1ef.jpg" alt="A burden shared is a burden halved">
+</div>
+<div class="r-mv-card" style="background-color: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(30,20,20,.1)">
+<span class="r-kicker">Our vision</span>
+<p class="r-mv-big">Making mental health everyone’s conversation.</p>
+<div class="r-stack">
+<p>Not something we only talk about when things fall apart.</p>
+<p>Not something we whisper about.</p>
+<p>Something we can talk about as naturally as we talk about our physical health, our relationships, our work and our everyday lives.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="r-sec">
+<div class="r-wrap r-split r-reveal">
+<div>
+<span class="r-kicker">What we believe</span>
+<h2 class="r-h2">Curious, non-judgemental and human.</h2>
+<p class="r-p">Tap each one to read a little more.</p>
+</div>
+<div>
+<details class="r-acc">
+<summary>Mental health belongs in everyday conversations.<span class="r-plus" aria-hidden="true"></span></summary>
+<div class="r-acc-body"><p>We want to make those conversations easier to have.</p></div>
+</details>
+<details class="r-acc">
+<summary>Mental health isn’t only about diagnoses or therapy.<span class="r-plus" aria-hidden="true"></span></summary>
+<div class="r-acc-body"><p>It’s about how we relate to ourselves, how we navigate relationships, how we deal with change, how we cope when things feel overwhelming and how we make sense of what we’re going through.</p></div>
+</details>
+<details class="r-acc">
+<summary>You don’t have to wait until things get bad.<span class="r-plus" aria-hidden="true"></span></summary>
+<div class="r-acc-body"><p>Support doesn’t have to be a last resort. Sometimes, talking to someone when things are just beginning to feel difficult can make all the difference.</p></div>
+</details>
+<details class="r-acc">
+<summary>There is no one way to experience mental health.<span class="r-plus" aria-hidden="true"></span></summary>
+<div class="r-acc-body"><p>Everyone comes with a different story, background and way of making sense of the world. That’s why we believe in creating spaces that are curious, non-judgemental and human.</p></div>
+</details>
+</div>
+</div>
+</section>
+
+<section class="r-sec" id="find-your-space">
+<div class="r-wrap r-reveal">
+<span class="r-kicker">Find your space</span>
+<h2 class="r-h2">How are you arriving today?</h2>
+<div class="r-moods" role="group" aria-label="Choose what feels closest">
+<sc-for list="{{ moods }}" as="m" hint-placeholder-count="3">
+<button class="r-mood {{ m.cls }}" type="button" onClick="{{ m.pick }}" aria-pressed="{{ m.on }}">{{ m.label }}</button>
+</sc-for>
+</div>
+<div class="r-cards">
+<a class="r-card {{ cardInd }}" href="services.html" style="--c: #BCD5EB"><span class="r-tag"></span><h3 class="r-h3">Individual Therapy</h3><p style="margin: 0">A one-to-one space to slow down, understand yourself and work through what you’re experiencing.</p><span class="r-more">Learn more</span></a>
+<a class="r-card {{ cardGrp }}" href="group-therapy.html" style="--c: #C7B740"><span class="r-tag"></span><h3 class="r-h3">Group Therapy</h3><p style="margin: 0">Small, themed groups where shared experiences create room for different perspectives, connection and growth.</p><span class="r-more">Explore groups</span></a>
+<a class="r-card r-card--dark {{ cardEvt }}" href="events.html" style="--c: #8C1A2D"><span class="r-tag"></span><h3 class="r-h3">Events</h3><p style="margin: 0">Conversations, workshops and community experiences that bring mental health out of the therapy room and into everyday life.</p><span class="r-more">See events</span></a>
+</div>
+</div>
+</section>
+
+<section class="r-sec" style="background-color: #F8D4C3; color: #8C1A2D; border-top: 0">
+<div class="r-wrap r-reveal">
+<p class="r-big">Sometimes, it starts with saying it out loud.</p>
+<p class="r-lead" style="margin-top: 24px">You don’t have to go through it alone.</p>
+<div class="r-btns"><a class="r-btn" href="book.html">Get in touch</a></div>
+</div>
+</section>
+</main>
+
+<section class="r-touch" id="get-in-touch">
+<div class="r-wrap">
+<span class="r-kicker">Get in touch</span>
+<h2 class="r-h2" style="color: #FFF2D0">You have a place here.</h2>
+<p class="r-lead" style="color: #FFF2D0">Whether you’re looking for support, want to join a group, have an event idea or want to collaborate with ruang, we’d love to hear from you.</p>
+<div class="r-touch-grid">
+<a class="r-ask" href="book.html" style="background-color: #F57523"><span><strong>Looking for therapy?</strong>Find out more about our individual and group sessions.</span><span class="r-go">Find support</span></a>
+<a class="r-ask" href="https://forms.gle/PmMKKssdThmmN3YD9" target="_blank" rel="noopener" style="background-color: #BCD5EB"><span><strong>Want to collaborate?</strong>Let’s create something together.</span><span class="r-go">Collaborate with us</span></a>
+<a class="r-ask" href="https://forms.gle/PmMKKssdThmmN3YD9" target="_blank" rel="noopener" style="background-color: #C7B740"><span><strong>Want to bring ruang to your organisation or community?</strong>Tell us what you’re working on.</span><span class="r-go">Work with us</span></a>
+<a class="r-ask" href="https://www.instagram.com/ruang_org/" target="_blank" rel="noopener" style="background-color: #F8D4C3"><span><strong>Have a question?</strong>Drop us a message. There’s no silly question.</span><span class="r-go">Contact us</span></a>
+</div>
+</div>
+</section>
+
+<footer class="r-foot">
+<div class="r-wrap">
+<div class="r-foot-grid">
+<div>
+<img src="assets/3613d6a8464082f3c5b678c36bb1cc7b.png" alt="ruang">
+<p>A space to talk. A space to be.<br>Mental health should be a conversation, not a whisper.</p>
+</div>
+<nav class="r-social" aria-label="Social">
+<a href="https://www.instagram.com/ruang_org/" target="_blank" rel="noopener">Instagram @ruang_org</a>
+<a href="mailto:ruangteam@gmail.com">ruangteam@gmail.com</a>
+</nav>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; margin-top: 40px; padding: 20px 22px; background-color: #F8D4C3; color: #8C1A2D; font-size: 15px; line-height: 1.5">
+<p style="margin: 0"><strong style="font-weight: 500">For immediate help:</strong> Talian Kasih <a href="tel:15999" style="color: #8C1A2D; font-weight: 500">15999</a> · Befrienders <a href="tel:+60376272929" style="color: #8C1A2D; font-weight: 500">03-7627 2929</a></p>
+<p style="margin: 0">Ruang Psychological Solutions 202603202713 (SA0656478-T)</p>
+</div>
+<p class="r-copy">© Ruang 2026</p>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5600}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { menu: false, shuffle: 0, part: 'lamp', mood: '' };
+}
+renderVals() {
+const s = this.state || {};
+const pal = ['#8C1A2D', '#BCD5EB', '#C7B740', '#F57523', '#F8D4C3'];
+const rots = ['0deg', '-4deg', '3deg', '-2deg', '5deg'];
+const i = s.shuffle || 0;
+const partsData = [
+{ id: 'lamp', label: 'The lamp', text: 'The lamp represents guidance, awareness and shedding light on mental health.', bg: '#F57523', fg: '#1E1414' },
+{ id: 'chair', label: 'The armchair', text: 'The armchair represents comfort and a safe space to talk.', bg: '#BCD5EB', fg: '#8C1A2D' },
+{ id: 'pink', label: 'The colour pink', text: 'The colour pink adds warmth and compassion.', bg: '#FBB8E8', fg: '#8C1A2D' },
+{ id: 'hand', label: 'The handwriting', text: 'The handwritten “ruang” keeps the identity personal, approachable and inviting.', bg: '#8C1A2D', fg: '#FFF2D0' }
+];
+const cur = partsData.find((p) => p.id === s.part) || partsData[0];
+const moodData = [
+{ id: 'ind', label: 'I’d like to talk one-to-one' },
+{ id: 'grp', label: 'I’d like to be around people who get it' },
+{ id: 'evt', label: 'I’m just curious for now' }
+];
+const m = s.mood;
+const cardCls = (id) => (!m ? '' : (m === id ? 'is-picked' : 'is-dim'));
+return {
+menuOpen: !!s.menu,
+openMenu: () => this.setState({ menu: true }),
+closeMenu: () => this.setState({ menu: false }),
+shuffle: () => this.setState({ shuffle: i + 1 }),
+sqA: pal[i % 5], sqB: pal[(i + 1) % 5], sqC: pal[(i + 3) % 5],
+rotA: rots[i % 5], rotB: rots[(i + 2) % 5], rotC: rots[(i + 4) % 5],
+parts: partsData.map((p) => ({ label: p.label, on: p.id === cur.id, cls: p.id === cur.id ? 'is-on' : '', pick: () => this.setState({ part: p.id }) })),
+partText: cur.text, partBg: cur.bg, partFg: cur.fg,
+moods: moodData.map((d) => ({ label: d.label, on: m === d.id, cls: m === d.id ? 'is-on' : '', pick: () => this.setState({ mood: m === d.id ? '' : d.id }) })),
+cardInd: cardCls('ind'), cardGrp: cardCls('grp'), cardEvt: cardCls('evt')
+};
+}
+}
+</script>
+</body>
+</html>

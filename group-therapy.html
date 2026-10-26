@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ruang · group therapy</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.r-page{--ink:#1E1414;--maroon:#8C1A2D;--orange:#F57523;--blue:#BCD5EB;--olive:#C7B740;--peach:#F8D4C3;--cream:#FFF2D0;--paper:#FBF8F3;font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;color:var(--ink);background:var(--paper);min-height:100vh;font-size:18px;line-height:1.6;-webkit-tap-highlight-color:transparent}
+.r-page *{box-sizing:border-box}
+.r-page button{font:inherit;color:inherit;cursor:pointer}
+.r-wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.r-bar{position:sticky;top:0;z-index:20;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.r-top{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1200px;margin:0 auto;padding:16px 32px}
+.r-home{display:block;line-height:0;transition:transform .3s ease}
+.r-home:hover,.r-home:active{transform:rotate(-2deg) scale(1.04)}
+.r-home img{height:44px;width:auto}
+.r-nav{display:flex;gap:8px}
+.r-tab{display:flex;align-items:center;justify-content:center;min-width:104px;height:52px;padding:0 14px;text-decoration:none;font-size:15px;line-height:1}
+.r-tab span{transition:font-size .22s ease}
+.r-tab:hover span,.r-tab:focus-visible span{font-size:19px}
+.r-tab[aria-current="page"]{box-shadow:inset 0 -5px 0 rgba(30,20,20,.5)}
+.r-page .r-menu-btn{display:none;align-items:center;gap:10px;min-height:48px;padding:0 16px 0 12px;border:0;background:var(--ink);color:var(--paper);font-size:15px;font-weight:500}
+.r-dots{display:grid;grid-template-columns:repeat(2,9px);gap:3px}
+.r-dots i{display:block;width:9px;height:9px}
+.r-overlay{position:fixed;inset:0;z-index:50;background:var(--paper);display:flex;flex-direction:column;padding:16px 20px 28px;overflow-y:auto;animation:r-in .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes r-in{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+.r-ov-top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.r-ov-top img{height:36px;width:auto}
+.r-page .r-close{min-height:48px;border:0;background:var(--ink);color:var(--paper);font-size:15px;font-weight:500;padding:0 18px}
+.r-ov-grid{flex:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(110px,1fr);gap:10px;margin-top:24px}
+.r-ov-grid a{display:flex;align-items:flex-end;padding:18px;text-decoration:none;font-size:26px;line-height:1;font-weight:500;transition:transform .2s ease}
+.r-ov-grid a:active{transform:scale(.96)}
+.r-ov-wide{grid-column:1 / -1}
+.r-ov-home{display:inline-block;margin-top:18px;font-size:16px;color:var(--ink)}
+@media (min-width:821px){.r-overlay{display:none!important}}
+.r-page a:focus-visible,.r-page button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.r-kicker{display:inline-flex;align-items:center;gap:10px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.r-kicker::before{content:"";width:14px;height:14px;background:var(--accent)}
+.r-h1{font-size:clamp(40px,5.6vw,80px);line-height:1;font-weight:500;letter-spacing:-.025em;margin:20px 0 28px}
+.r-h2{font-size:clamp(30px,4vw,56px);line-height:1.04;font-weight:500;letter-spacing:-.02em;margin:16px 0 24px}
+.r-h3{font-size:24px;line-height:1.15;font-weight:500;margin:0 0 12px}
+.r-lead{font-size:clamp(19px,1.6vw,22px);line-height:1.55;max-width:34em;margin:0 0 18px}
+.r-p{margin:0 0 16px;max-width:38em}
+.r-sec{padding:112px 0}
+.r-split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:56px;align-items:start}
+.r-img{display:block;width:100%;height:auto;object-fit:cover;transition:transform .4s ease,box-shadow .4s ease}
+.r-img:hover{transform:rotate(-1.2deg) scale(1.015);box-shadow:10px 10px 0 var(--accent)}
+.r-btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.r-btn{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 24px;background:var(--ink);color:var(--paper);text-decoration:none;font-size:16px;font-weight:500;transition:transform .25s ease,box-shadow .25s ease}
+.r-btn::after{content:"→";transition:transform .25s ease}
+.r-btn:hover,.r-btn:active{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--btn,var(--olive))}
+.r-btn:hover::after{transform:translateX(4px)}
+.r-btn--line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.r-btn--line:hover,.r-btn--line:active{box-shadow:inset 0 0 0 1.5px var(--ink),6px 6px 0 var(--btn,var(--olive))}
+.r-touch{background:var(--maroon);color:var(--cream);padding:112px 0 104px}
+.r-touch .r-kicker::before{background:var(--cream)}
+.r-touch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px;margin-top:44px}
+.r-ask{display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:240px;padding:28px;text-decoration:none;color:var(--ink);transition:transform .3s ease}
+.r-ask strong{display:block;font-size:24px;line-height:1.1;font-weight:500;transition:font-size .22s ease;margin-bottom:10px}
+.r-ask:hover,.r-ask:active{transform:translateY(-8px)}
+.r-ask:hover strong{font-size:29px}
+.r-go{font-weight:500;border-bottom:1.5px solid currentColor;align-self:flex-start}
+.r-foot{padding:80px 0 40px}
+.r-foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;align-items:flex-end}
+.r-foot img{height:56px;width:auto}
+.r-foot p{margin:16px 0 0;line-height:1.5}
+.r-social{display:flex;flex-wrap:wrap;gap:6px 24px}
+.r-social a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color .2s}
+.r-social a:hover{border-color:var(--maroon)}
+.r-copy{margin-top:40px;font-size:14px;color:rgba(30,20,20,.7)}
+.r-hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:56px;align-items:center;padding:48px 0 120px}
+.r-collage{position:relative;width:100%;max-width:480px;aspect-ratio:1 / 1;justify-self:center}
+.r-sq{position:absolute;display:flex;align-items:flex-end;padding:16px 18px;box-sizing:border-box;font-size:clamp(17px,1.7vw,24px);line-height:1.1;font-weight:500;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.r-collage:hover .r-sq--a{transform:translate(-14px,-10px) rotate(-3deg)}
+.r-collage:hover .r-sq--b{transform:translate(12px,-14px) rotate(4deg)}
+.r-collage:hover .r-sq--c{transform:translate(10px,12px) rotate(-2deg)}
+.r-collage:hover .r-sq--d{transform:translate(-10px,12px) rotate(3deg)}
+.r-sq-word{position:absolute;left:0;right:0;bottom:-36px;text-align:center;font-size:15px;color:rgba(30,20,20,.7)}
+.r-worlds{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:20px;align-items:stretch;margin-top:48px}
+.r-world{padding:28px;display:flex;flex-direction:column;gap:18px;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.r-world:hover{transform:translateY(-6px)}
+.r-world small{font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.r-tags{display:flex;flex-wrap:wrap;gap:8px}
+.r-tags span{padding:9px 14px;background:rgba(255,255,255,.75);font-size:17px;font-weight:500;transition:transform .25s ease}
+.r-tags span:hover{transform:rotate(-2deg) scale(1.05)}
+.r-gapmark{display:flex;align-items:center;justify-content:center;font-size:clamp(40px,5vw,72px);font-weight:500;color:var(--maroon);padding:0 8px}
+.r-vision{background:var(--maroon);color:var(--cream);padding:128px 0;overflow:hidden}
+.r-vision .r-kicker::before{background:var(--olive)}
+.r-vision-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:64px;align-items:center}
+.r-big{font-size:clamp(40px,6vw,88px);line-height:.98;font-weight:500;letter-spacing:-.03em;margin:20px 0 32px}
+.r-venn{position:relative;width:100%;max-width:520px;aspect-ratio:5 / 3.4;justify-self:center}
+.r-page .r-venn-btn{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:transparent}
+.r-circle{position:absolute;top:0;width:60%;aspect-ratio:1 / 1;border-radius:50%;display:flex;flex-direction:column;justify-content:center;gap:6px;font-size:clamp(15px,1.5vw,20px);font-weight:500;line-height:1.15;overflow:hidden;isolation:isolate;transition:transform .8s cubic-bezier(.2,.8,.2,1),box-shadow .5s ease}
+.r-circle small{font-size:13px;font-weight:400;line-height:1.3;opacity:.85}
+@media (max-width:640px){.r-circle small,.r-venn-mid small{display:none}.r-venn-mid{font-size:17px}.r-circle{font-size:14px}.r-circle--a{padding-left:7%}.r-circle--b{padding-right:7%}.r-venn.is-near .r-circle--a{transform:translateX(4%)}.r-venn.is-near .r-circle--b{transform:translateX(-4%)}.r-venn.is-near .r-circle--b::before{left:-58.667%}}
+.r-circle--a{left:0;background:radial-gradient(circle at 35% 35%,rgba(248,212,195,.34),rgba(248,212,195,.12) 70%);box-shadow:inset 0 0 0 2px var(--peach);color:var(--peach);align-items:flex-start;padding-left:8%;padding-right:50%}
+.r-circle--b{right:0;background:radial-gradient(circle at 65% 35%,rgba(188,213,235,.34),rgba(188,213,235,.12) 70%);box-shadow:inset 0 0 0 2px var(--blue);color:var(--blue);align-items:flex-end;padding-right:8%;padding-left:50%;text-align:right}
+.r-circle--b::before{content:"";position:absolute;top:0;left:-66.667%;width:100%;height:100%;border-radius:50%;background:var(--olive);z-index:-1;transition:left .8s cubic-bezier(.2,.8,.2,1)}
+.r-venn:hover .r-circle--a{transform:translateX(3%)}
+.r-venn:hover .r-circle--b{transform:translateX(-3%)}
+.r-venn:hover .r-circle--b::before{left:-60.667%}
+.r-venn.is-near .r-circle--a{transform:translateX(8%)}
+.r-venn.is-near .r-circle--b{transform:translateX(-8%)}
+.r-venn.is-near .r-circle--b::before{left:-50.667%}
+.r-venn.is-near .r-circle{box-shadow:inset 0 0 0 2px currentColor,0 0 60px rgba(255,242,208,.12)}
+.r-venn-mid{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--ink);font-size:clamp(18px,1.8vw,24px);font-weight:600;letter-spacing:.01em;white-space:nowrap;pointer-events:none;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.r-venn-mid small{font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;opacity:0;max-height:0;transition:opacity .5s ease .3s,max-height .5s ease}
+.r-venn.is-near .r-venn-mid{transform:translate(-50%,-50%) scale(1.08)}
+.r-venn.is-near .r-venn-mid small{opacity:.8;max-height:20px}
+.r-venn-hint{display:inline-flex;align-items:center;gap:8px}
+.r-venn-hint::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--olive);animation:r-pulse 1.8s ease-in-out infinite}
+@keyframes r-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.8);opacity:.4}}
+.r-venn-hint-wrap{position:absolute;left:0;right:0;bottom:0;text-align:center}
+.r-venn-hint{font-size:14px;color:rgba(255,242,208,.8)}
+.r-steps{list-style:none;margin:8px 0 0;padding:0}
+.r-steps li{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid rgba(30,20,20,.14);font-size:clamp(19px,1.7vw,23px);line-height:1.3;font-weight:500;transition:transform .3s ease}
+.r-steps li::before{content:"";flex:0 0 12px;height:12px;background:var(--olive)}
+.r-steps li:hover{transform:translateX(10px)}
+.r-nots{margin:40px 0 0;padding:0;list-style:none}
+.r-nots li{padding:16px 0;border-top:1px solid rgba(255,242,208,.25);font-size:clamp(19px,1.7vw,23px);line-height:1.4;transition:transform .3s ease}
+.r-nots li:hover{transform:translateX(10px)}
+.r-nots li.is-yes{font-weight:500;color:#FFFFFF}
+.r-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px;margin-top:36px}
+.r-fact{display:flex;flex-direction:column;justify-content:space-between;gap:20px;min-height:180px;padding:24px;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.r-fact strong{display:block;font-size:clamp(44px,4.6vw,64px);line-height:.95;font-weight:500;letter-spacing:-.03em;transition:font-size .25s ease}
+.r-fact span{font-size:18px;line-height:1.3}
+.r-fact:hover,.r-fact:active{transform:translateY(-6px) rotate(-1deg)}
+.r-fact:hover strong{font-size:clamp(52px,5.4vw,76px)}
+.r-themes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px;margin-top:28px}
+.r-page .r-theme{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:140px;padding:20px;border:0;text-align:left;background:#fff;box-shadow:inset 0 0 0 1px rgba(30,20,20,.12);overflow:hidden;isolation:isolate;transition:color .35s ease,transform .3s ease}
+.r-page .r-theme::before{content:"";position:absolute;inset:0;background:var(--c);clip-path:circle(0% at 100% 100%);transition:clip-path .55s cubic-bezier(.2,.8,.2,1);z-index:-1}
+.r-page .r-theme:hover::before{clip-path:circle(22% at 100% 100%)}
+.r-page .r-theme.is-on::before{clip-path:circle(150% at 100% 100%)}
+.r-page .r-theme.is-on{color:var(--on);transform:translateY(-6px)}
+.r-theme small{font-size:14px;font-weight:500}
+.r-theme span{font-size:20px;line-height:1.15;font-weight:500}
+.r-chosen{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;padding:22px 26px;background:var(--ink);color:var(--paper);animation:r-in .4s ease}
+.r-chosen p{margin:0;font-size:clamp(19px,1.8vw,24px);line-height:1.3;font-weight:500}
+.r-chosen .r-btn{background:var(--olive);color:var(--ink)}
+.r-payoff{background:var(--olive);padding:120px 0}
+.r-payoff .r-img{box-shadow:none}
+.r-payoff .r-img:hover{box-shadow:10px 10px 0 var(--maroon)}
+.r-lines{margin:36px 0 0;padding:0;list-style:none}
+.r-lines li{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:baseline;padding:18px 0;border-top:1.5px solid rgba(30,20,20,.25);font-size:clamp(21px,2.1vw,28px);line-height:1.25;font-weight:500;transition:transform .3s ease,color .3s ease}
+.r-lines li::before{content:"";width:16px;height:16px;background:var(--maroon);transition:transform .3s ease}
+.r-lines li:hover{transform:translateX(10px);color:var(--maroon)}
+.r-lines li:hover::before{transform:rotate(45deg) scale(1.3)}
+.r-invite{padding:128px 0}
+.r-invite-box{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:56px;align-items:start}
+.r-says{margin:8px 0 0;padding:0;list-style:none}
+.r-says li{font-size:clamp(20px,1.9vw,26px);line-height:1.25;font-weight:500;padding:14px 0;border-top:1px solid rgba(140,26,45,.25);color:var(--maroon);animation:r-in .5s cubic-bezier(.2,.8,.2,1)}
+.r-page .r-reveal{display:inline-flex;align-items:center;gap:12px;min-height:52px;margin-top:18px;padding:0 22px;border:0;background:var(--peach);color:var(--maroon);font-size:16px;font-weight:500;transition:transform .2s ease}
+.r-page .r-reveal:hover{transform:translateY(-3px) rotate(-1deg)}
+.r-page .r-reveal:active{transform:scale(.97)}
+.r-together{margin:22px 0 0;font-size:clamp(19px,1.7vw,22px);font-weight:500;animation:r-in .5s ease}
+@media (max-width:820px){.r-nav{display:none}.r-page .r-menu-btn{display:inline-flex}.r-home img{height:34px}.r-top{padding:12px 20px}.r-worlds{grid-template-columns:1fr}.r-gapmark{padding:0}}
+@media (max-width:640px){.r-page{font-size:17px}.r-wrap{padding-left:20px;padding-right:20px}.r-sec,.r-payoff,.r-invite{padding:72px 0}.r-vision{padding:80px 0}.r-hero{padding:24px 0 88px;gap:48px}.r-touch{padding:80px 0}.r-themes{grid-template-columns:repeat(2,minmax(0,1fr))}.r-page .r-theme{min-height:116px;padding:14px}.r-theme span{font-size:17px}.r-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.r-fact{min-height:140px;padding:18px}.r-fact strong{font-size:38px}.r-chosen{padding:18px}.r-world{padding:22px}}
+@media (prefers-reduced-motion:reduce){.r-page *,.r-page *::before,.r-page *::after{transition:none!important;animation:none!important}}
+/* phones only: nothing below affects screens wider than 640px */
+@media (max-width:640px){
+.r-page{font-size:16px}
+.r-h1{font-size:34px!important;margin:14px 0 18px}
+.r-h2{font-size:26px!important;margin:10px 0 16px}
+.r-h3{font-size:20px}
+.r-lead{font-size:17px!important}
+.r-p{font-size:16px}
+.r-kicker{font-size:12px}
+.r-btn{font-size:15px;min-height:46px;padding:0 18px}
+.r-btns{margin-top:24px}
+.r-touch{padding:60px 0}
+.r-touch-grid{margin-top:28px}
+.r-ask{min-height:0;padding:22px;gap:18px}
+.r-ask strong,.r-ask:hover strong{font-size:20px}
+.r-ov-grid a{font-size:22px}
+.r-foot{padding:56px 0 32px}
+.r-foot img{height:44px}
+.r-copy{margin-top:28px}
+.r-big{font-size:30px!important}
+.r-fact strong,.r-fact:hover strong{font-size:40px}
+.r-fact span{font-size:16px}
+.r-fact{min-height:140px}
+.r-gapmark{font-size:36px}
+.r-lines li{font-size:19px}
+.r-nots li{font-size:17px}
+.r-says li{font-size:18px}
+.r-steps li{font-size:17px}
+.r-tags span{font-size:15px}
+.r-theme span{font-size:16px}
+.r-chosen p{font-size:17px}
+.r-chosen{padding:18px 20px}
+.r-sq{font-size:15px}
+}
+</style>
+</helmet>
+<div class="r-page" style="--accent: #C7B740">
+<div class="r-bar">
+<header class="r-top">
+<a class="r-home" href="index.html" aria-label="ruang home"><img src="assets/3613d6a8464082f3c5b678c36bb1cc7b.png" alt="ruang"></a>
+<nav class="r-nav" aria-label="Main">
+<a class="r-tab" href="about.html" style="background-color: #F57523; color: #1E1414"><span>about us</span></a>
+<a class="r-tab" href="who-are-we.html" style="background-color: #F8D4C3; color: #8C1A2D"><span>who are we</span></a>
+<a class="r-tab" href="services.html" style="background-color: #BCD5EB; color: #8C1A2D"><span>services</span></a>
+<a class="r-tab" href="group-therapy.html" aria-current="page" style="background-color: #C7B740; color: #8C1A2D"><span>group therapy</span></a>
+<a class="r-tab" href="events.html" style="background-color: #8C1A2D; color: #FFF2D0"><span>events</span></a>
+</nav>
+<button class="r-menu-btn" type="button" onClick="{{ openMenu }}" aria-label="Open menu"><span class="r-dots" aria-hidden="true"><i style="background-color: #F57523"></i><i style="background-color: #BCD5EB"></i><i style="background-color: #C7B740"></i><i style="background-color: #F8D4C3"></i></span>menu</button>
+</header>
+</div>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+<div class="r-overlay" role="dialog" aria-label="Menu">
+<div class="r-ov-top"><img src="assets/3613d6a8464082f3c5b678c36bb1cc7b.png" alt="ruang"><button class="r-close" type="button" onClick="{{ closeMenu }}">close</button></div>
+<nav class="r-ov-grid" aria-label="Main">
+<a href="about.html" style="background-color: #F57523; color: #1E1414">about us</a>
+<a href="who-are-we.html" style="background-color: #F8D4C3; color: #8C1A2D">who are we</a>
+<a href="services.html" style="background-color: #BCD5EB; color: #8C1A2D">services</a>
+<a href="events.html" style="background-color: #8C1A2D; color: #FFF2D0">events</a>
+<a class="r-ov-wide" href="group-therapy.html" style="background-color: #C7B740; color: #8C1A2D">group therapy</a>
+</nav>
+<a class="r-ov-home" href="index.html">Back to the start</a>
+</div>
+</sc-if>
+
+<main>
+<section class="r-wrap">
+<div class="r-hero">
+<div>
+<span class="r-kicker">Group therapy</span>
+<h1 class="r-h1">Connection is everywhere. But where do we go to feel understood?</h1>
+<p class="r-lead">We find our people through shared interests. Finding a space to talk about how we really feel is harder.</p>
+<div class="r-btns">
+<a class="r-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeuEVdn5eHgqKlsizBfbMk-Qr0SHsplWLK8WyJl1K5rKJBdFg/viewform?usp=header" target="_blank" rel="noopener">Register your interest</a>
+<a class="r-btn r-btn--line" href="#themes">See the themes</a>
+</div>
+</div>
+<div class="r-collage" aria-hidden="true">
+<div class="r-sq r-sq--a" style="left: 0; top: 4%; width: 42%; height: 40%; background-color: #C7B740; color: #1E1414">Up to 10 people.</div>
+<div class="r-sq r-sq--b" style="right: 0; top: 0; width: 46%; height: 30%; background-color: #F8D4C3; color: #8C1A2D">One theme.</div>
+<div class="r-sq r-sq--c" style="right: 6%; bottom: 6%; width: 36%; height: 52%; background-color: #8C1A2D; color: #FFF2D0">Guided by a professional.</div>
+<div class="r-sq r-sq--d" style="left: 8%; bottom: 0; width: 44%; height: 42%; background-color: #BCD5EB; color: #8C1A2D">A space to be heard.</div>
+</div>
+</div>
+</section>
+
+<section class="r-sec" style="background-color: #FFF2D0">
+<div class="r-wrap">
+<span class="r-kicker" style="--accent: #8C1A2D">The gap</span>
+<h2 class="r-h2">Two worlds. A gap in between.</h2>
+<div class="r-worlds">
+<div class="r-world" style="background-color: #F8D4C3; color: #8C1A2D">
+<small>Where we connect</small>
+<div class="r-tags"><span>Running clubs</span><span>Board games</span><span>Coffee conversations</span><span>Shared interests</span></div>
+</div>
+<div class="r-gapmark" aria-hidden="true">?</div>
+<div class="r-world" style="background-color: #BCD5EB; color: #8C1A2D">
+<small>Where we find support</small>
+<div class="r-tags"><span>Professional guidance</span><span>A safe space to talk</span></div>
+<p style="margin: 14px 0 0; font-size: 16px; line-height: 1.4">But it can feel intimidating to approach.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="r-vision">
+<div class="r-wrap r-vision-grid">
+<div>
+<span class="r-kicker">Our idea</span>
+<p class="r-big">What if there were a space in between?</p>
+<ul class="r-nots" style="margin-top: 0">
+<li>Not a replacement for individual therapy.</li>
+<li>Not simply another social gathering.</li>
+<li class="is-yes">A space to explore shared experiences and learn about yourself, guided by a mental health professional.</li>
+</ul>
+</div>
+<div class="r-venn {{ vennCls }}">
+<button class="r-venn-btn" type="button" onClick="{{ toggleVenn }}" aria-pressed="{{ vennNear }}" aria-label="Bring connection and professional guidance together">
+<span class="r-circle r-circle--a">Connection<small>shared interests, community</small></span>
+<span class="r-circle r-circle--b">Professional<br>guidance<small>safe, guided support</small></span>
+<span class="r-venn-mid">ruang<small>group therapy</small></span>
+<span class="r-venn-hint-wrap"><span class="r-venn-hint">{{ vennHint }}</span></span>
+</button>
+</div>
+</div>
+</section>
+
+<section class="r-sec" id="experience">
+<div class="r-wrap r-split" style="align-items: center">
+<img class="r-img" src="assets/893cade750d67b7bec7f66d4c5fe502a.jpg" alt="A woman standing still as people rush past her" style="aspect-ratio: 4 / 3; --accent: #BCD5EB">
+<div>
+<span class="r-kicker">The experience</span>
+<h2 class="r-h2">Your story, alongside other people’s.</h2>
+<ul class="r-steps">
+<li>Explore your own story.</li>
+<li>Hear perspectives you hadn’t considered.</li>
+<li>Realise you’re not the only one.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="r-sec" id="themes" style="background-color: #FFF2D0">
+<div class="r-wrap">
+<span class="r-kicker">How it works</span>
+<h2 class="r-h2">Small, guided and centred on one theme.</h2>
+<div class="r-facts">
+<div class="r-fact" style="background-color: #C7B740; color: #1E1414"><strong>10</strong><span>people per group</span></div>
+<div class="r-fact" style="background-color: #F8D4C3; color: #8C1A2D"><strong>2</strong><span>slots a week, same theme. Miss one, join the other.</span></div>
+<div class="r-fact" style="background-color: #BCD5EB; color: #8C1A2D"><strong>RM100</strong><span>per person</span></div>
+<div class="r-fact" style="background-color: #8C1A2D; color: #FFF2D0"><strong>1</strong><span>theme per group</span></div>
+</div>
+<h3 class="r-h3" style="margin-top: 64px">Group themes</h3>
+<p class="r-p">Tap the one that feels like you right now. Themes will vary from group to group.</p>
+<div class="r-themes" role="group" aria-label="Group themes">
+<sc-for list="{{ themes }}" as="t" hint-placeholder-count="10">
+<button class="r-theme {{ t.cls }}" type="button" onClick="{{ t.pick }}" aria-pressed="{{ t.on }}" style="--c: {{ t.color }}; --on: {{ t.fg }}"><small>{{ t.num }}</small><span>{{ t.label }}</span></button>
+</sc-for>
+</div>
+<sc-if value="{{ hasTheme }}" hint-placeholder-val="{{ false }}">
+<div class="r-chosen" aria-live="polite">
+<p>{{ themeLine }}</p>
+<a class="r-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeuEVdn5eHgqKlsizBfbMk-Qr0SHsplWLK8WyJl1K5rKJBdFg/viewform?usp=header" target="_blank" rel="noopener" style="--btn: #FFF2D0">Register your interest</a>
+</div>
+</sc-if>
+<sc-if value="{{ noTheme }}" hint-placeholder-val="{{ true }}">
+<div class="r-chosen">
+<p>Found one that fits? Save your seat.</p>
+<a class="r-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeuEVdn5eHgqKlsizBfbMk-Qr0SHsplWLK8WyJl1K5rKJBdFg/viewform?usp=header" target="_blank" rel="noopener" style="--btn: #FFF2D0">Register your interest</a>
+</div>
+</sc-if>
+</div>
+</section>
+
+</main>
+
+<section class="r-touch" id="get-in-touch">
+<div class="r-wrap">
+<span class="r-kicker">Get in touch</span>
+<h2 class="r-h2" style="color: #FFF2D0">You have a place here.</h2>
+<p class="r-lead" style="color: #FFF2D0">Whether you’re looking for support, want to join a group, have an event idea or want to collaborate with ruang, we’d love to hear from you.</p>
+<div class="r-touch-grid">
+<a class="r-ask" href="book.html" style="background-color: #F57523"><span><strong>Looking for therapy?</strong>Find out more about our individual and group sessions.</span><span class="r-go">Find support</span></a>
+<a class="r-ask" href="https://forms.gle/PmMKKssdThmmN3YD9" target="_blank" rel="noopener" style="background-color: #BCD5EB"><span><strong>Want to collaborate?</strong>Let’s create something together.</span><span class="r-go">Collaborate with us</span></a>
+<a class="r-ask" href="https://forms.gle/PmMKKssdThmmN3YD9" target="_blank" rel="noopener" style="background-color: #C7B740"><span><strong>Want to bring ruang to your organisation or community?</strong>Tell us what you’re working on.</span><span class="r-go">Work with us</span></a>
+<a class="r-ask" href="https://www.instagram.com/ruang_org/" target="_blank" rel="noopener" style="background-color: #F8D4C3"><span><strong>Have a question?</strong>Drop us a message. There’s no silly question.</span><span class="r-go">Contact us</span></a>
+</div>
+</div>
+</section>
+
+<footer class="r-foot">
+<div class="r-wrap">
+<div class="r-foot-grid">
+<div>
+<img src="assets/3613d6a8464082f3c5b678c36bb1cc7b.png" alt="ruang">
+<p>A space to talk. A space to be.<br>Mental health should be a conversation, not a whisper.</p>
+</div>
+<nav class="r-social" aria-label="Social">
+<a href="https://www.instagram.com/ruang_org/" target="_blank" rel="noopener">Instagram @ruang_org</a>
+<a href="mailto:ruangteam@gmail.com">ruangteam@gmail.com</a>
+</nav>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; margin-top: 40px; padding: 20px 22px; background-color: #F8D4C3; color: #8C1A2D; font-size: 15px; line-height: 1.5">
+<p style="margin: 0"><strong style="font-weight: 500">For immediate help:</strong> Talian Kasih <a href="tel:15999" style="color: #8C1A2D; font-weight: 500">15999</a> · Befrienders <a href="tel:+60376272929" style="color: #8C1A2D; font-weight: 500">03-7627 2929</a></p>
+<p style="margin: 0">Ruang Psychological Solutions 202603202713 (SA0656478-T)</p>
+</div>
+<p class="r-copy">© Ruang 2026</p>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5600}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { menu: false, theme: '', step: 1, near: false };
+}
+renderVals() {
+const s = this.state || {};
+const colors = [['#C7B740', '#1E1414'], ['#F8D4C3', '#8C1A2D'], ['#BCD5EB', '#8C1A2D'], ['#F57523', '#1E1414'], ['#8C1A2D', '#FFF2D0']];
+const names = ['Relationships & Attachment', 'Self-Worth & People Pleasing', 'Anxiety & Overthinking', 'Boundaries', 'Burnout', 'Family Dynamics', 'Emotional Regulation', 'Identity & Self-Discovery', 'Life Transitions', 'Healing from Difficult Experiences'];
+const step = s.step || 1;
+const labels = ['', 'Tap for the next one', 'And another', 'One more'];
+const near = !!s.near;
+return {
+menuOpen: !!s.menu,
+openMenu: () => this.setState({ menu: true }),
+closeMenu: () => this.setState({ menu: false }),
+vennNear: near,
+vennCls: near ? 'is-near' : '',
+vennHint: near ? 'tap to move them apart' : 'tap to bring them together',
+toggleVenn: () => this.setState({ near: !near }),
+themes: names.map((n, i) => ({ num: String(i + 1).padStart(2, '0'), label: n, color: colors[i % 5][0], fg: colors[i % 5][1], on: s.theme === n, cls: s.theme === n ? 'is-on' : '', pick: () => this.setState({ theme: s.theme === n ? '' : n }) })),
+hasTheme: !!s.theme, noTheme: !s.theme,
+themeLine: s.theme ? 'You picked ' + s.theme + '. Want us to let you know when this group opens?' : '',
+show2: step >= 2, show3: step >= 3, show4: step >= 4,
+moreToShow: step < 4, allShown: step >= 4,
+revealLabel: labels[step] || 'Tap for the next one',
+reveal: () => this.setState({ step: step + 1 })
+};
+}
+}
+</script>
+</body>
+</html>

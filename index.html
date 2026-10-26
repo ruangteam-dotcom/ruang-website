@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ruang</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.rg-page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at 42% 48%, #FFFFFF 0%, #FBF9F5 45%, #F6F2EA 100%);container-type:inline-size;font-family:"Bricolage Grotesque", "Helvetica Neue", sans-serif;-webkit-tap-highlight-color:transparent}
+.rg-stage{position:relative;width:100%;max-width:1440px;aspect-ratio:1440 / 810}
+.rg-logo{position:absolute;left:6.25%;top:66.8%;width:45.3%;height:auto;display:block}
+.rg-tagline{display:none}
+.rg-box{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;box-sizing:border-box;padding:8px;cursor:pointer}
+.rg-label{display:block;font-size:min(1.53cqw, 22px);line-height:0.98;letter-spacing:0.01em;white-space:pre-line;transition:font-size 220ms ease}
+.rg-box:hover .rg-label,.rg-box:focus-visible .rg-label,.rg-box:active .rg-label{font-size:min(2.1cqw, 30px)}
+.rg-box:focus-visible{outline:3px solid #141414;outline-offset:3px}
+.rg-events{left:45.83%;top:29.51%;width:11.94%;height:24.44%}
+.rg-about{left:60.07%;top:14.44%;width:16.88%;height:32.84%}
+.rg-services{left:78.54%;top:21.6%;width:10.42%;height:21.73%}
+.rg-group{left:59.31%;top:51.6%;width:21.67%;height:24.44%}
+.rg-who{left:82.5%;top:47.41%;width:10.69%;height:37.53%}
+@media (max-width: 760px){
+.rg-page{align-items:flex-start}
+.rg-stage{aspect-ratio:auto;display:grid;grid-template-columns:repeat(6, minmax(0, 1fr));grid-auto-rows:64px;gap:10px;padding:36px 20px 48px;box-sizing:border-box}
+.rg-logo{position:static;grid-column:1 / -1;grid-row:span 2;width:92%;align-self:center}
+.rg-tagline{display:block;grid-column:1 / -1;margin:0 0 6px;font-size:17px;line-height:1.45;color:#1E1414}
+.rg-box{position:static;width:auto;height:auto;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.rg-box:active{transform:scale(.96)}
+.rg-about{grid-column:1 / 5;grid-row:span 3}
+.rg-services{grid-column:5 / 7;grid-row:span 2;transform:translateY(18px)}
+.rg-events{grid-column:1 / 4;grid-row:span 2}
+.rg-who{grid-column:4 / 7;grid-row:span 3}
+.rg-group{grid-column:1 / 4;grid-row:span 2}
+.rg-label{font-size:21px}
+.rg-box:hover .rg-label,.rg-box:focus-visible .rg-label,.rg-box:active .rg-label{font-size:26px}
+}
+@media (prefers-reduced-motion: reduce){.rg-label,.rg-box{transition:none}}
+</style>
+</helmet>
+<main class="rg-page">
+<div class="rg-stage">
+<img class="rg-logo" src="assets/3613d6a8464082f3c5b678c36bb1cc7b.png" alt="ruang">
+<p class="rg-tagline">A space to talk. A space to be.</p>
+<a class="rg-box rg-events" href="events.html" style="background-color: #8C1A2D; color: #FFF2D0"><span class="rg-label">events</span></a>
+<a class="rg-box rg-about" href="about.html" style="background-color: #F57523; color: #FFF2D0"><span class="rg-label">about
+us</span></a>
+<a class="rg-box rg-services" href="services.html" style="background-color: #BCD5EB; color: #8C1A2D"><span class="rg-label">services</span></a>
+<a class="rg-box rg-group" href="group-therapy.html" style="background-color: #C7B740; color: #8C1A2D"><span class="rg-label">group
+therapy</span></a>
+<a class="rg-box rg-who" href="who-are-we.html" style="background-color: #F8D4C3; color: #8C1A2D"><span class="rg-label">who
+are
+we</span></a>
+</div>
+<footer style="width: 100%; max-width: 1440px; box-sizing: border-box; padding: 16px 20px 24px; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 32px; font-size: 14px; line-height: 1.5; color: #8C1A2D; text-align: center">
+<p style="margin: 0"><strong style="font-weight: 500">For immediate help:</strong> Talian Kasih <a href="tel:15999" style="color: #8C1A2D; font-weight: 500">15999</a> · Befrienders <a href="tel:+60376272929" style="color: #8C1A2D; font-weight: 500">03-7627 2929</a></p>
+<p style="margin: 0">Ruang Psychological Solutions 202603202713 (SA0656478-T)</p>
+</footer>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":810}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
